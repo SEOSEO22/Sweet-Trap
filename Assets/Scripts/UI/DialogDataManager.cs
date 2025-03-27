@@ -22,7 +22,7 @@ public class DialogDataManager : MonoBehaviour
             Vector2 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             RaycastHit2D hit = Physics2D.Raycast(mousePos, Vector2.zero);
 
-            if (hit.collider.gameObject.GetComponent<DialogData>())
+            if (hit.collider && hit.collider.gameObject.GetComponent<DialogData>())
             {
                 SetDialog(hit.collider.gameObject);
             }
