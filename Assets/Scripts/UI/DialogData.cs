@@ -7,6 +7,20 @@ using UnityEngine;
 public class DialogData : MonoBehaviour
 {
     public int id;
-    public int currentDialogIdx = 0;
     public string[] dialogs;
+    private int currentDialogIdx = 0;
+
+    public int GetCurrentDialogIdx()
+    {
+        int returnValue = currentDialogIdx;
+
+        if (currentDialogIdx < dialogs.Length) currentDialogIdx++;
+        else
+        {
+            returnValue = -1;
+            currentDialogIdx = 0;
+        }
+
+        return returnValue;
+    }
 }
