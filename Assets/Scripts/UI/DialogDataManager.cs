@@ -11,15 +11,34 @@ public class DialogDataManager : MonoBehaviour
     
     private GameObject scanObject; // 상호작용할 아이템 오브젝트
     private Dictionary<int, string[]> dialogData;   // 아이템별 상호작용 대사를 저장하는 Dictionary
-    private bool isDialogPanelActive = false;   // 대사 패널의 활성화 여부 확인
+    public bool isDialogPanelActive { get; private set; } = false;   // 대사 패널의 활성화 여부 확인
 
     private void Awake()
     {
         dialogData = new Dictionary<int, string[]>();
-        InitDialog();
+        InitDialog(); 
+    }
+
+    private void Start()
+    {
+        scanObject = GameObject.Find("GameManager");
+        SetDialog(scanObject);
     }
 
     private void Update()
+    {
+        UpdateDialog();
+    }
+
+    // 대사창 게임 오브젝트 비활성화 및 대사 초기화
+    private void InitDialog()
+    {
+        dialogPanel.SetActive(false);
+        isDialogPanelActive = false;
+        dialogText.text = "";
+    }
+
+    public void UpdateDialog()
     {
         if (Input.GetMouseButtonDown(0))
         {
@@ -39,14 +58,6 @@ public class DialogDataManager : MonoBehaviour
                 SetDialog(scanObject);
             }
         }
-    }
-
-    // 대사창 게임 오브젝트 비활성화 및 대사 초기화
-    private void InitDialog()
-    {
-        dialogPanel.SetActive(false);
-        isDialogPanelActive = false;
-        dialogText.text = "";
     }
 
     // 대사창 UI에 대사 설정
