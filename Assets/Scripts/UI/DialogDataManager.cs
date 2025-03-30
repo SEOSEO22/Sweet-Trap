@@ -19,12 +19,6 @@ public class DialogDataManager : MonoBehaviour
         InitDialog(); 
     }
 
-    private void Start()
-    {
-        scanObject = GameObject.Find("GameManager");
-        SetDialog(scanObject);
-    }
-
     private void Update()
     {
         UpdateDialog();
@@ -48,10 +42,8 @@ public class DialogDataManager : MonoBehaviour
             // 클릭한 오브젝트가 상호작용이 가능할 경우
             if (!isDialogPanelActive && hit.collider && hit.collider.gameObject.GetComponent<DialogData>())
             {
-                scanObject = hit.collider.gameObject;
-
                 InitDialog();   // 대사창 초기화
-                SetDialog(scanObject); // 재생할 대사 설정
+                SetDialog(hit.collider.gameObject); // 재생할 대사 설정
             }
             else if (isDialogPanelActive) // 대사가 남아있을 경우 대사 재생
             {
@@ -63,7 +55,9 @@ public class DialogDataManager : MonoBehaviour
     // 대사창 UI에 대사 설정
     public void SetDialog(GameObject scanObj)
     {
-        DialogData dialogData = scanObj.GetComponent<DialogData>();
+        scanObject = scanObj;
+
+        DialogData dialogData = scanObject.GetComponent<DialogData>();
         int dialogIndex = dialogData.GetCurrentDialogIdx();
 
         // 대사가 없을 경우 대사창 비활성화

@@ -16,5 +16,7 @@ public class InteractableItem : MonoBehaviour
     private void Start()
     {
         dialogDataManager.AddDialogData(dialogData.id, dialogData.dialogs);
+
+        if (gameObject.name == "GameManager") dialogDataManager.SetDialog(this.gameObject);
     }
 }

@@ -20,6 +20,7 @@ public class CameraZoom : MonoBehaviour
     private Vector3 targetPosition;
     private Vector3 currentPosition;
     private Vector3 vectorVelocity = Vector3.zero;
+    private Collider2D zoomCollider;
     private Camera mainCam;
 
     public bool isZoom { get; private set; }
@@ -57,6 +58,9 @@ public class CameraZoom : MonoBehaviour
 
         if (hit.collider && hit.collider.gameObject.CompareTag("Zoom") && !isZoom)
         {
+            zoomCollider = hit.collider;
+            zoomCollider.enabled = false;
+
             zoom = minZoom;
             isZoom = true;
 
@@ -70,6 +74,8 @@ public class CameraZoom : MonoBehaviour
     {
         if (isZoom)
         {
+            zoomCollider.enabled = true;
+
             zoom = maxZoom;
             isZoom = false;
 
