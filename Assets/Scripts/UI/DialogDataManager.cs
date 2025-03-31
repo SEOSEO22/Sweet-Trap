@@ -1,13 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
-using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
 public class DialogDataManager : MonoBehaviour
 {
     [SerializeField] private GameObject dialogPanel;
-    [SerializeField] private TextMeshProUGUI dialogText;
+    [SerializeField] private Text dialogText;
     
     private GameObject scanObject; // 상호작용할 아이템 오브젝트
     private Dictionary<int, string[]> dialogData;   // 아이템별 상호작용 대사를 저장하는 Dictionary
