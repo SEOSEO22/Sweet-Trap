@@ -7,6 +7,7 @@ using UnityEngine;
 public class DialogData : MonoBehaviour
 {
     public int id;
+    [TextArea]
     public string[] dialogs;
     private int currentDialogIdx = 0;
 

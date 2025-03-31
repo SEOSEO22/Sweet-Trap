@@ -46,7 +46,7 @@ public class CameraZoom : MonoBehaviour
             ZoomIn();
         else if (Input.GetKeyDown(KeyCode.Escape)) 
             ZoomOut();
-        
+
         mainCam.orthographicSize = Mathf.SmoothDamp(mainCam.orthographicSize, zoom, ref velocity, smoothTime);
         mainCam.transform.position = Vector3.SmoothDamp(mainCam.transform.position, currentPosition, ref vectorVelocity, smoothTime);
     }
