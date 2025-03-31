@@ -5,7 +5,7 @@ using UnityEngine;
 public class CameraZoom : MonoBehaviour
 {
     private float zoom;
-    private float minZoom = 2f;
+    public float minZoom { get; private set; } = 2f;
     private float maxZoom;
     private float velocity = 0f;
     private float smoothTime = 0.25f;

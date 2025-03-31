@@ -27,14 +27,10 @@ public class GetZoomItem : MonoBehaviour
 
     private void GetItem()
     {
-        if (zoom.isZoom)
+        if (zoom.isZoom && Camera.main.orthographicSize < (zoom.minZoom + 0.1f))
         {
             itemCollider.enabled = true;
-
-            if (IsItemExist(needItemName))
-                itemPickUp.isConditionMet = true;
-            else
-                itemPickUp.isConditionMet = false;
+            itemPickUp.isConditionMet = IsItemExist(needItemName);
         }
         else
             itemCollider.enabled = false;

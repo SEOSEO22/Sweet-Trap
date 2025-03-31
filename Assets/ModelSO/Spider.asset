@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6622750e3f37dc145bd3311823270a75, type: 3}
   m_Name: Spider
   m_EditorClassIdentifier: 
-  <Icon>k__BackingField: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
+  <Icon>k__BackingField: {fileID: 21300000, guid: 479267f31dd0c6842a2c939263154a84, type: 3}
   <DisplayName>k__BackingField: "\uAC70\uBBF8"
   <Discription>k__BackingField: 
