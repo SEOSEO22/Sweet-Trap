@@ -22,16 +22,22 @@ public class CameraScreenManager : MonoBehaviour
     {
         if (cam == null) return;
 
-        currentIndex = (currentIndex + 1) % screenPositions.Count; // 오른쪽 이동 (순환)
-        cam.transform.position = screenPositions[currentIndex].position; // 즉시 이동
+        currentIndex = (currentIndex + 1) % screenPositions.Count;
+        Vector3 newPosition = screenPositions[currentIndex].position;
+        cam.transform.position = newPosition;
+
+        FindObjectOfType<CameraZoom>().SetCameraPosition(newPosition); // 추가
     }
 
     public void MoveLeft()
     {
         if (cam == null) return;
 
-        currentIndex = (currentIndex - 1 + screenPositions.Count) % screenPositions.Count; // 왼쪽 이동 (순환)
-        cam.transform.position = screenPositions[currentIndex].position; // 즉시 이동
+        currentIndex = (currentIndex - 1 + screenPositions.Count) % screenPositions.Count;
+        Vector3 newPosition = screenPositions[currentIndex].position;
+        cam.transform.position = newPosition;
+
+        FindObjectOfType<CameraZoom>().SetCameraPosition(newPosition); // 추가
     }
 
     public Vector3 GetCurrentScreenPosition()

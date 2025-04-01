@@ -8,6 +8,9 @@ public class C_Dialogue : MonoBehaviour
     public GameObject dialoguePanel; // 대사창 (Panel)
     public Text dialogueText; // 대사 내용 (레거시 UI Text)
 
+    public float triggerX; // 대사가 시작될 X좌표
+    public float triggerThreshold = 0.5f; // 오차 범위
+
     private string[] dialogues = {
         "무언가를 실험한건가 ..? ",
         "윽 ... 머리가 아파",
@@ -19,25 +22,35 @@ public class C_Dialogue : MonoBehaviour
     };
 
     private int index = 0;
-
-    private List<TouchTrigger> interactableObjects = new List<TouchTrigger>(); // Interactable 스크립트를 가진 오브젝트들
+    private bool isDialogueStarted = false; // 대사가 시작되었는지 체크
+    private List<TouchTrigger> interactableObjects = new List<TouchTrigger>();
 
     void Start()
     {
-        dialoguePanel.SetActive(false); // 게임 시작 시 대사창 표시
-        dialogueText.text = dialogues[index]; // 첫 번째 대사 출력
-
-        // 상호작용할 오브젝트들을 비활성화
+        dialoguePanel.SetActive(false);
         DisableInteractableObjects();
     }
 
     void Update()
     {
-        // 마우스 왼쪽 클릭하면 다음 대사 출력
-        if (Input.GetMouseButtonDown(0))
+        if (!isDialogueStarted && Mathf.Abs(Camera.main.transform.position.x - triggerX) < triggerThreshold)
+        {
+            StartDialogue();
+        }
+
+        if (isDialogueStarted && Input.GetMouseButtonDown(0))
         {
             NextDialogue();
         }
+    }
+
+    public void StartDialogue()
+    {
+        if (isDialogueStarted) return;
+
+        isDialogueStarted = true;
+        dialoguePanel.SetActive(true);
+        dialogueText.text = dialogues[index];
     }
 
     public void NextDialogue()
@@ -46,35 +59,31 @@ public class C_Dialogue : MonoBehaviour
 
         if (index < dialogues.Length)
         {
-            dialogueText.text = dialogues[index]; // 다음 대사 출력
+            dialogueText.text = dialogues[index];
         }
         else
         {
-            dialoguePanel.SetActive(false); // 모든 대사가 끝나면 대사창 숨김
-
-            // 대사가 끝난 후 상호작용 가능한 오브젝트 다시 활성화
+            dialoguePanel.SetActive(false);
             EnableInteractableObjects();
         }
     }
 
-    // Interactable 컴포넌트를 가진 오브젝트들을 비활성화하는 함수
     private void DisableInteractableObjects()
     {
         interactableObjects.Clear();
-        foreach (TouchTrigger TouchTrigger in FindObjectsOfType<TouchTrigger>())
+        foreach (TouchTrigger touchTrigger in FindObjectsOfType<TouchTrigger>())
         {
-            TouchTrigger.gameObject.SetActive(false); // 오브젝트 비활성화
-            interactableObjects.Add(TouchTrigger); // 비활성화한 오브젝트를 리스트에 저장
+            touchTrigger.gameObject.SetActive(false);
+            interactableObjects.Add(touchTrigger);
         }
     }
 
-    // Interactable 컴포넌트를 가진 오브젝트들을 다시 활성화하는 함수
     private void EnableInteractableObjects()
     {
-        foreach (TouchTrigger TouchTrigger in interactableObjects)
+        foreach (TouchTrigger touchTrigger in interactableObjects)
         {
-            TouchTrigger.gameObject.SetActive(true); // 오브젝트 활성화
+            touchTrigger.gameObject.SetActive(true);
         }
-        interactableObjects.Clear(); // 리스트 초기화
+        interactableObjects.Clear();
     }
 }
