@@ -10,6 +10,15 @@ TagManager:
   - star
   - card
   - blank
+  - Zoom
+  - Task
+  - MBottle
+  - CookieSister
+  - Frog
+  - Snake
+  - Paper
+  - Exit
+  - PIcture
   layers:
   - Default
   - TransparentFX

@@ -28,7 +28,6 @@ public class UIInventoryPage : MonoBehaviour
             listOfUIItems.Add(uiItem);
 
             uiItem.OnItemBeginDrag += HandleBeginDrag;
-            uiItem.OnItemDroppedOn += HandleDrop;
             uiItem.OnItemEndDrag += HandleEndDrag;
         }
     }
@@ -42,15 +41,6 @@ public class UIInventoryPage : MonoBehaviour
         }
     }
 
-    // 아이템을 사용했을 때 기능 (액션 정의는 InventoryController.cs에 존재)
-    public void HandleDrop(UIInventoryItem inventoryItemUI)
-    {
-        int index = listOfUIItems.IndexOf(inventoryItemUI);
-        if (index == -1) return;
-
-        OnItemDrop?.Invoke(index);
-    }
-
     // 드래그하는 아이템의 인덱스를 알아와 해당 아이템을 사용하는 함수
     // (액션 정의는 InventoryController.cs에 존재)
     public void HandleBeginDrag(UIInventoryItem inventoryItemUI)
@@ -62,9 +52,15 @@ public class UIInventoryPage : MonoBehaviour
         OnStartDragging?.Invoke(index);
     }
 
+    // 아이템을 사용했을 때 기능
     public void HandleEndDrag(UIInventoryItem inventoryItemUI)
     {
         ResetDraggedItem();
+
+        int index = listOfUIItems.IndexOf(inventoryItemUI);
+        if (index == -1) return;
+
+        OnItemDrop?.Invoke(index);
     }
 
     // 드래그하려는 아이템의 이미지를 가져와 마우스를 따라다니도록 드래그 아이템 생성
