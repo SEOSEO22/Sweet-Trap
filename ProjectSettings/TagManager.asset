@@ -4,6 +4,12 @@
 TagManager:
   serializedVersion: 2
   tags:
+  - choco
+  - mirror
+  - xButton
+  - star
+  - card
+  - blank
   - Zoom
   - Task
   - MBottle
