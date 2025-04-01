@@ -4,6 +4,15 @@ using UnityEngine;
 
 public class BottleController : MonoBehaviour
 {
+    [HideInInspector] 
+    public SpriteRenderer initBottleMaskSR;
+    [HideInInspector]
+    public int initNumberOfColorsInBottle;
+    [HideInInspector]
+    public Color initTopColor;
+    [HideInInspector]
+    public int initNumberOfTopColorLayers;
+
     public Color[] bottleColors;
     public SpriteRenderer bottleMaskSR;
 
@@ -38,6 +47,22 @@ public class BottleController : MonoBehaviour
 
     public LineRenderer lineRenderer;
 
+    public void InitBottle()
+    {
+        bottleMaskSR = initBottleMaskSR;
+        numberOfColorsInBottle = initNumberOfColorsInBottle;
+        numberOfTopColorLayers = initNumberOfTopColorLayers;
+        topColor = initTopColor;
+
+        rotationIndex = 0;
+        numberOfColorsToTransfer = 0;
+        directionMutiplier = 1.0f;
+
+        bottleMaskSR.material.SetFloat("_FillAmount", fillAmounts[numberOfColorsInBottle]);
+        UpdateColorsOnShader();
+        UpdateTopColorValues();
+    }
+
     private void Start()
     {
         bottleMaskSR.material.SetFloat("_FillAmount", fillAmounts[numberOfColorsInBottle]);
@@ -45,9 +70,14 @@ public class BottleController : MonoBehaviour
 
         UpdateColorsOnShader();
         UpdateTopColorValues();
+
+        initBottleMaskSR = bottleMaskSR;
+        initNumberOfColorsInBottle = numberOfColorsInBottle;
+        initNumberOfTopColorLayers = numberOfTopColorLayers;
+        initTopColor = topColor;
     }
 
-    private void Update()
+    /* private void Update()
     {
         if (Input.GetKeyDown(KeyCode.P) && justThisBottle == true)
         {
@@ -70,6 +100,7 @@ public class BottleController : MonoBehaviour
             StartCoroutine(RotateBottle());
         }
     }
+    */
 
     public void StartColorTransfer()
     {
@@ -229,6 +260,8 @@ public class BottleController : MonoBehaviour
         }
 
         UpdateTopColorValues();
+        bottleControllerRef.UpdateTopColorValues();
+
         angleValue = 0.0f;
         transform.eulerAngles = new Vector3(0, 0, angleValue);
         bottleMaskSR.material.SetFloat("_SARM", ScaleAndRotationMutiplierCurve.Evaluate(angleValue));
@@ -283,6 +316,10 @@ public class BottleController : MonoBehaviour
 
             rotationIndex = 3 - (numberOfColorsInBottle - numberOfTopColorLayers);
         }
+        else
+        {
+            numberOfTopColorLayers = 0;
+        }
     }
 
     public bool FillBottleCheck(Color colorToCheck)
@@ -333,5 +370,17 @@ public class BottleController : MonoBehaviour
             chosenRotationPoint = rightRotationPoint;
             directionMutiplier = 1.0f;
         }
+    }
+
+    public bool IsBottleAllSameColor()
+    {
+        bool result = false;
+
+        if (numberOfColorsInBottle == numberOfTopColorLayers)
+        {
+            result = true;
+        }
+
+        return result;
     }
 }
