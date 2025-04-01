@@ -8,10 +8,12 @@ public class MoveToBasement : MonoBehaviour
     [SerializeField] private InventorySO inventoryData;
     [SerializeField] private string needItemName;
 
-/*    private void Awake()
+    private int needItemIndex;
+
+    private void Awake()
     {
         gameObject.SetActive(false);
-    }*/
+    }
 
     private void Update()
     {
@@ -21,7 +23,10 @@ public class MoveToBasement : MonoBehaviour
             RaycastHit2D hit = Physics2D.Raycast(mousePos, Vector2.zero);
 
             if (hit.collider && hit.collider.gameObject.name == this.name)
+            {
+                inventoryData.RemoveItem(needItemIndex);
                 SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+            }
         }
     }
 
@@ -33,10 +38,11 @@ public class MoveToBasement : MonoBehaviour
         bool isExist = false;
         Dictionary<int, InventoryItem> inventoryItems = inventoryData.GetCurrentInventoryState();
 
-        foreach (InventoryItem item in inventoryItems.Values)
+        foreach (KeyValuePair<int, InventoryItem> item in inventoryItems)
         {
-            if (item.item.DisplayName == itemName)
+            if (item.Value.item.DisplayName == itemName)
             {
+                needItemIndex = item.Key;
                 isExist = true;
                 break;
             }

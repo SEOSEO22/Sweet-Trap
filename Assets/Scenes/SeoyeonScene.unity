@@ -822,8 +822,8 @@ Transform:
   - {fileID: 1636975094}
   - {fileID: 682602196}
   - {fileID: 468886104}
-  - {fileID: 1517858536}
   - {fileID: 1510770635}
+  - {fileID: 1517858536}
   - {fileID: 941776842}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -2374,6 +2374,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1510770635}
   - component: {fileID: 1510770636}
+  - component: {fileID: 1510770637}
   m_Layer: 0
   m_Name: Pot
   m_TagString: Untagged
@@ -2448,6 +2449,27 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &1510770637
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1510770634}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 04fd12c8cd0be4a46a8057d08b16a2b9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  removeObjects:
+  - {fileID: 468886103}
+  - {fileID: 1510770634}
+  basementDoor: {fileID: 1517858535}
+  inventoryData: {fileID: 11400000, guid: cf7c5148cc48d9849b60e7707af87792, type: 2}
+  needItemNames:
+  - "\uBF08\uB2E4\uADC0"
+  - "\uC0C1\uD55C \uBBF8\uC5ED \uC904\uAE30"
+  - "\uD749\uCE21\uD55C \uAD6C\uC2AC"
 --- !u!1 &1517858535
 GameObject:
   m_ObjectHideFlags: 0
@@ -2468,7 +2490,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1517858536
 Transform:
   m_ObjectHideFlags: 0
@@ -3690,6 +3712,11 @@ Transform:
   - {fileID: 1084596698}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!224 &2005076825 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 7958862972136558629, guid: aaaa9a3f6ae48d941963de2a26c0d9fb, type: 3}
+  m_PrefabInstance: {fileID: 6949579104123481323}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &2022752280
 GameObject:
   m_ObjectHideFlags: 0
@@ -3827,6 +3854,81 @@ MonoBehaviour:
     m_MipBias: 0
     m_VarianceClampScale: 0.9
     m_ContrastAdaptiveSharpening: 0
+--- !u!1 &2064676253
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2064676254}
+  - component: {fileID: 2064676256}
+  - component: {fileID: 2064676255}
+  m_Layer: 5
+  m_Name: Pot Interact Area
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &2064676254
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2064676253}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2005076825}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: -550, y: -250}
+  m_SizeDelta: {x: 400, y: 400}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &2064676255
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2064676253}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 0}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 0}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!222 &2064676256
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2064676253}
+  m_CullTransparentMesh: 1
 --- !u!1 &2120911309
 GameObject:
   m_ObjectHideFlags: 0
@@ -4177,7 +4279,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
-    m_AddedGameObjects: []
+    m_AddedGameObjects:
+    - targetCorrespondingSourceObject: {fileID: 7958862972136558629, guid: aaaa9a3f6ae48d941963de2a26c0d9fb, type: 3}
+      insertIndex: 0
+      addedObject: {fileID: 2064676254}
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: aaaa9a3f6ae48d941963de2a26c0d9fb, type: 3}
 --- !u!1001 &7233769343571953016
@@ -4192,6 +4297,22 @@ PrefabInstance:
       propertyPath: inventoryUI
       value: 
       objectReference: {fileID: 1504905395}
+    - target: {fileID: 402101736180593189, guid: 40d4c94d77428f54ba478f0482717482, type: 3}
+      propertyPath: initialItems.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 402101736180593189, guid: 40d4c94d77428f54ba478f0482717482, type: 3}
+      propertyPath: initialItems.Array.data[0].item
+      value: 
+      objectReference: {fileID: 11400000, guid: e50955f0b90fb794cac238e6908007ab, type: 2}
+    - target: {fileID: 402101736180593189, guid: 40d4c94d77428f54ba478f0482717482, type: 3}
+      propertyPath: initialItems.Array.data[1].item
+      value: 
+      objectReference: {fileID: 11400000, guid: c9e02f94b5ff57247bd43b6b9478ec22, type: 2}
+    - target: {fileID: 402101736180593189, guid: 40d4c94d77428f54ba478f0482717482, type: 3}
+      propertyPath: initialItems.Array.data[2].item
+      value: 
+      objectReference: {fileID: 11400000, guid: 86db241bdf30ecc49b5063587ef8859f, type: 2}
     - target: {fileID: 743887202117965407, guid: 40d4c94d77428f54ba478f0482717482, type: 3}
       propertyPath: m_Name
       value: Player
@@ -4250,8 +4371,8 @@ SceneRoots:
   - {fileID: 7233769343571953016}
   - {fileID: 71405036}
   - {fileID: 423115775}
+  - {fileID: 446125443}
   - {fileID: 6949579104123481323}
   - {fileID: 1956644384876554252}
   - {fileID: 455596685}
   - {fileID: 488643940}
-  - {fileID: 446125443}
