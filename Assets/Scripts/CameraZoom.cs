@@ -99,4 +99,10 @@ public class CameraZoom : MonoBehaviour
 
         return new Vector3(clampedX, clampedY, targetPosition.z);
     }
+
+    public void SetCameraPosition(Vector3 newPosition)
+    {
+        currentPosition = newPosition;
+        mainCam.transform.position = newPosition; // 즉시 반영
+    }
 }
