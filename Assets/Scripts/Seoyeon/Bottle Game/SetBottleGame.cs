@@ -44,7 +44,8 @@ public class SetBottleGame : MonoBehaviour
             {
                 foreach (Collider2D interatableObject in interatableObjects)
                 {
-                    interatableObject.enabled = false;
+                    if (interatableObject != null)
+                        interatableObject.enabled = false;
                 }
 
                 zoom.zoom = zoom.minZoom;
@@ -56,7 +57,8 @@ public class SetBottleGame : MonoBehaviour
         {
             foreach (Collider2D interatableObject in interatableObjects)
             {
-                interatableObject.enabled = true;
+                if (interatableObject != null)
+                    interatableObject.enabled = true;
             }
 
             zoom.zoom = zoom.maxZoom;

@@ -11,7 +11,9 @@ public class Pot : MonoBehaviour
     [SerializeField] private InventorySO inventoryData;
     [SerializeField] private string[] needItemNames;
 
+    [SerializeField]
     private bool[] isItemOnceInInventory;
+    [SerializeField]
     private bool[] isItemUsed;
 
     private void Start()
@@ -32,7 +34,7 @@ public class Pot : MonoBehaviour
         {
             if (IsItemExist(needItemNames[i]) == false)
             {
-                break;
+                continue;
             }
 
             isItemOnceInInventory[i] = true;
@@ -44,7 +46,7 @@ public class Pot : MonoBehaviour
             {
                 if (IsItemExist(needItemNames[i]) == true)
                 {
-                    break;
+                    continue;
                 }
 
                 isItemUsed[i] = true;
@@ -57,7 +59,7 @@ public class Pot : MonoBehaviour
         {
             if (isItemUsed[i] == false)
             {
-                break;
+                return;
             }
 
             isItemAllUsed = true;
@@ -69,9 +71,27 @@ public class Pot : MonoBehaviour
 
             foreach (GameObject obj in removeObjects)
             {
-                Destroy(obj.gameObject);
+                StartCoroutine(FadeOutAndDestroy(obj));
             }
         }
+    }
+
+    private IEnumerator FadeOutAndDestroy(GameObject obj)
+    {
+        SpriteRenderer sr = obj.GetComponent<SpriteRenderer>();
+        Color startColor = sr.color;
+        float duration = 1.0f; // 1초 동안 서서히 투명해짐
+        float elapsed = 0.0f;
+
+        while (elapsed < duration)
+        {
+            elapsed += Time.deltaTime;
+            float alpha = Mathf.Lerp(1f, 0f, elapsed / duration);
+            sr.color = new Color(startColor.r, startColor.g, startColor.b, alpha);
+            yield return null; // 한 프레임 대기
+        }
+
+        Destroy(obj);
     }
 
     // 필요한 아이템이 인벤토리에 있는지 확인
