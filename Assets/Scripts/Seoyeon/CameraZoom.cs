@@ -37,11 +37,6 @@ public class CameraZoom : MonoBehaviour
 
         backgroundSize = background.GetComponent<SpriteRenderer>().bounds.size;
     }
-    public void SetCameraPosition(Vector3 newPosition)
-    {
-        currentPosition = newPosition;
-        mainCam.transform.position = newPosition;
-    }
 
     private void Update()
     {
