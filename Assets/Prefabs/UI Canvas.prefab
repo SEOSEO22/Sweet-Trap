@@ -328,6 +328,30 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5184807932143720347, guid: f83c3b0d3ce28254d9d24cc56201d9de, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5184807932143720347, guid: f83c3b0d3ce28254d9d24cc56201d9de, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5184807932143720347, guid: f83c3b0d3ce28254d9d24cc56201d9de, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5184807932143720347, guid: f83c3b0d3ce28254d9d24cc56201d9de, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5184807932143720347, guid: f83c3b0d3ce28254d9d24cc56201d9de, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5184807932143720347, guid: f83c3b0d3ce28254d9d24cc56201d9de, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5594137010085112431, guid: f83c3b0d3ce28254d9d24cc56201d9de, type: 3}
       propertyPath: mouseFollower
       value: 
