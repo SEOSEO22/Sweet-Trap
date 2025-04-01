@@ -36,7 +36,7 @@ public class GetZoomItem : MonoBehaviour
             itemCollider.enabled = false;
     }
 
-    // 아이템 획득에 필요한 아이템이 인벤토리에 있는지 확인
+    // 필요한 아이템이 인벤토리에 있는지 확인
     private bool IsItemExist(string itemName)
     {
         if (itemName == "None") return true;
