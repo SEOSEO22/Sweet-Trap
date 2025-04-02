@@ -9,9 +9,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6622750e3f37dc145bd3311823270a75, type: 3}
-  m_Name: Key
+  m_Script: {fileID: 11500000, guid: bbda5333b25dadc42bb0975f4952ed68, type: 3}
+  m_Name: Gem2
   m_EditorClassIdentifier: 
-  <Icon>k__BackingField: {fileID: 21300000, guid: 3661b7517f54e8541b64c882127dc4f5, type: 3}
-  <DisplayName>k__BackingField: 
+  <Icon>k__BackingField: {fileID: 21300000, guid: 5062590c9cefb974494ea125bafd578f, type: 3}
+  <DisplayName>k__BackingField: "\uBCF4\uC11D2"
   <Discription>k__BackingField: 
+  TargetItem:
+  - Exit2

@@ -72,6 +72,7 @@ public class InventoryController : MonoBehaviour
         {
             Debug.Log(hit.collider.name);
             ITarget target = (ITarget)hit.collider.GetComponent<ITarget>();
+            Debug.Log(target);
             if (target == null) return;
 
             bool isTargetItem = false;

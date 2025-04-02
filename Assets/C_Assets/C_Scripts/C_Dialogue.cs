@@ -12,12 +12,19 @@ public class C_Dialogue : MonoBehaviour
     public float triggerThreshold = 0.5f; // 오차 범위
 
     private string[] dialogues = {
+        "...",
         "무언가를 실험한건가 ..? ",
+        "...",
         "윽 ... 머리가 아파",
+        "....",
         "맞아 … 나는 분명 동생을 찾으러 돌아다니고있었는데…",
+        "....",
         "도중에 마녀에게 붙잡히고 말았어",
+        "....",
         "그럼 여긴 마녀의 집인가봐",
+        ".....",
         "그럼 동생이 여기에 있을 수도 있겠어",
+        "....",
         "동생을 찾아서 여길 나가야겠어"
     };
 
@@ -38,7 +45,7 @@ public class C_Dialogue : MonoBehaviour
             StartDialogue();
         }
 
-        if (isDialogueStarted && Input.GetMouseButtonDown(0))
+        if (isDialogueStarted && Input.GetMouseButtonUp(0))
         {
             NextDialogue();
         }
