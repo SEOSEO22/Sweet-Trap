@@ -6,8 +6,10 @@ public class ECameraController : MonoBehaviour
     public float moveSpeed = 5f; // 이동 속도
     private int currentIndex = 1; // 시작 위치는 1번 (중간)
 
+
     private void Update()
     {
+        Debug.Log(positions[currentIndex].position);
         // 카메라를 목표 위치로 부드럽게 이동
         transform.position = Vector3.Lerp(transform.position, positions[currentIndex].position, Time.deltaTime * moveSpeed);
     }

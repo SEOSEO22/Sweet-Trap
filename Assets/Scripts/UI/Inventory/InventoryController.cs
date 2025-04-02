@@ -70,7 +70,6 @@ public class InventoryController : MonoBehaviour
         RaycastHit2D hit = Physics2D.Raycast(worldPosition, Vector2.zero);
         if (hit.collider != null)
         {
-            Debug.Log(hit.collider.name);
             ITarget target = (ITarget)hit.collider.GetComponent<ITarget>();
             Debug.Log(target);
             if (target == null) return;

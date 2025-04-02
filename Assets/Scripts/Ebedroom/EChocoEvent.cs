@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
+using UnityEngine.SceneManagement;
 
 public class EChocoEvent : MonoBehaviour
 {
@@ -10,7 +11,6 @@ public class EChocoEvent : MonoBehaviour
     public GameObject milk;
     public GameObject banana;
     public GameObject straw;
-    public GameObject witch;
     public GameObject bone;
     public GameObject xb;
     public GameObject vb;
@@ -34,7 +34,6 @@ public class EChocoEvent : MonoBehaviour
         if (xb != null) xb.SetActive(false);
         if (vb != null) vb.SetActive(false);
         if (bone != null) bone.SetActive(false);
-        if (witch != null) witch.SetActive(false);
 
         if (retryObject != null)
             retryObject.SetActive(false);
@@ -89,8 +88,6 @@ public class EChocoEvent : MonoBehaviour
 
         if (xb != null) xb.SetActive(false);
         if (vb != null) vb.SetActive(false);
-
-        if (witch != null) witch.SetActive(false);
 
         if (retryObject != null)
             retryObject.SetActive(false);
@@ -159,7 +156,6 @@ public class EChocoEvent : MonoBehaviour
         straw?.SetActive(false);
         xb?.SetActive(false);
         vb?.SetActive(false);
-        witch?.SetActive(false);
         retryObject?.SetActive(false);
 
         if (end != null)
@@ -195,9 +191,8 @@ public class EChocoEvent : MonoBehaviour
             milk?.SetActive(false);
             banana?.SetActive(false);
             straw?.SetActive(false);
-
-            witch?.SetActive(true);
             retryObject?.SetActive(true);
+            SceneManager.LoadScene("EscapeFailScene");
 
             return;
         }
