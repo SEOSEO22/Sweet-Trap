@@ -8,7 +8,6 @@ public class Pot : MonoBehaviour, ITarget
     [SerializeField] private GameObject basementDoor;
 
     [Space]
-    [SerializeField] private InventorySO inventoryData;
     [SerializeField] private string[] needItemNames;
 
     [SerializeField]
@@ -65,26 +64,6 @@ public class Pot : MonoBehaviour, ITarget
         }
 
         Destroy(obj);
-    }
-
-    // 필요한 아이템이 인벤토리에 있는지 확인
-    private bool IsItemExist(string itemName)
-    {
-        if (itemName == "None") return true;
-
-        bool isExist = false;
-        Dictionary<int, InventoryItem> inventoryItems = inventoryData.GetCurrentInventoryState();
-
-        foreach (KeyValuePair<int, InventoryItem> item in inventoryItems)
-        {
-            if (item.Value.item.DisplayName == itemName)
-            {
-                isExist = true;
-                break;
-            }
-        }
-
-        return isExist;
     }
 
     public void UseItemAction(string itemName)
