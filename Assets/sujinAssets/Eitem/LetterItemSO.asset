@@ -9,9 +9,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6622750e3f37dc145bd3311823270a75, type: 3}
+  m_Script: {fileID: 11500000, guid: bbda5333b25dadc42bb0975f4952ed68, type: 3}
   m_Name: LetterItemSO
   m_EditorClassIdentifier: 
   <Icon>k__BackingField: {fileID: 21300000, guid: b0d083f101a4288439f4d14a2476372f, type: 3}
   <DisplayName>k__BackingField: letter1
   <Discription>k__BackingField: 
+  TargetItem:
+  - Emirror
