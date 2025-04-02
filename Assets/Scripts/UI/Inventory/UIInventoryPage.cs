@@ -12,7 +12,8 @@ public class UIInventoryPage : MonoBehaviour
     private List<UIInventoryItem> listOfUIItems = new List<UIInventoryItem>();
     private int currentlyDraggedItemIndex = -1;
 
-    public event Action<int> OnStartDragging, OnItemDrop;
+    public event Action<int> OnStartDragging;
+    public event Action<int, Vector2> OnItemDrop;
 
     private void Awake()
     {
@@ -60,7 +61,8 @@ public class UIInventoryPage : MonoBehaviour
         int index = listOfUIItems.IndexOf(inventoryItemUI);
         if (index == -1) return;
 
-        OnItemDrop?.Invoke(index);
+        Vector2 screenPosition = Input.mousePosition;
+        OnItemDrop?.Invoke(index, screenPosition);
     }
 
     // 드래그하려는 아이템의 이미지를 가져와 마우스를 따라다니도록 드래그 아이템 생성

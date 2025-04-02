@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static UnityEngine.GraphicsBuffer;
 
 public class InventoryController : MonoBehaviour
 {
@@ -56,18 +57,49 @@ public class InventoryController : MonoBehaviour
         inventoryUI.CreatedDraggedItem(inventoryItem.item.Icon);
     }
 
-    private void HandleItemUse(int itemIndex)
+    private void HandleItemUse(int itemIndex, Vector2 screenPosition)
     {
         InventoryItem inventoryItem = inventoryData.GetItemAt(itemIndex);
         if (inventoryItem.IsEmpty) return;
 
-        IItemUse itemUse = inventoryItem.item as IItemUse;
-        if (itemUse != null) itemUse.ItemUse();
 
-        IDestroyableItem destroyableItem = inventoryItem.item as IDestroyableItem;
-        if (destroyableItem != null)
+        // 화면 좌표를 월드 좌표로 변환
+        Vector2 worldPosition = Camera.main.ScreenToWorldPoint(screenPosition);
+
+        // 2D Raycast로 타겟 검출
+        RaycastHit2D hit = Physics2D.Raycast(worldPosition, Vector2.zero);
+        if (hit.collider != null)
         {
-            inventoryData.RemoveItem(itemIndex);
+            Debug.Log(hit.collider.name);
+            ITarget target = (ITarget)hit.collider.GetComponent<ITarget>();
+            if (target == null) return;
+
+            bool isTargetItem = false;
+
+            foreach (string targetName in ((PotItemSO)(inventoryItem.item)).TargetItem)
+            {
+                if (targetName == hit.collider.name)
+                {
+                    isTargetItem = true;
+                    break;
+                }
+            }
+
+            if (isTargetItem ==true)
+            {
+                IItemUse itemUse = inventoryItem.item as IItemUse;
+                if (itemUse != null)
+                {
+                    itemUse.ItemUse();
+                    target.UseItemAction(inventoryItem.item.DisplayName);
+                }
+
+                IDestroyableItem destroyableItem = inventoryItem.item as IDestroyableItem;
+                if (destroyableItem != null)
+                {
+                    inventoryData.RemoveItem(itemIndex);
+                }
+            }
         }
     }
 }

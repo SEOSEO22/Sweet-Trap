@@ -50,6 +50,7 @@ public class SetBottleGame : MonoBehaviour
 
                 zoom.zoom = zoom.minZoom;
                 potionGamePanel.SetActive(true);
+                StartCoroutine(zoom.SmoothZoom());
             }
         }
 
@@ -63,6 +64,7 @@ public class SetBottleGame : MonoBehaviour
 
             zoom.zoom = zoom.maxZoom;
             potionGamePanel.SetActive(false);
+            StartCoroutine(zoom.SmoothZoom());
         }
     }
 

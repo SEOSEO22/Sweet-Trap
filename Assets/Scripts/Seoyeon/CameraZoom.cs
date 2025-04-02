@@ -32,7 +32,7 @@ public class CameraZoom : MonoBehaviour
         maxZoom = zoom;
         isZoom = false;
 
-        originPosition = mainCam.transform.position;
+        originPosition = background.GetComponentInParent<Transform>().position;
         currentPosition = originPosition;
 
         backgroundSize = background.GetComponent<SpriteRenderer>().bounds.size;
@@ -47,8 +47,7 @@ public class CameraZoom : MonoBehaviour
         else if (Input.GetKeyDown(KeyCode.Escape)) 
             ZoomOut();
 
-        mainCam.orthographicSize = Mathf.SmoothDamp(mainCam.orthographicSize, zoom, ref velocity, smoothTime);
-        mainCam.transform.position = Vector3.SmoothDamp(mainCam.transform.position, currentPosition, ref vectorVelocity, smoothTime);
+        mainCam.transform.position = new Vector3(mainCam.transform.position.x, mainCam.transform.position.y, -10);
     }
 
     private void ZoomIn()
@@ -67,6 +66,8 @@ public class CameraZoom : MonoBehaviour
             // 클릭한 지점을 중심으로 카메라 이동
             targetPosition = ClampCameraPosition(new Vector3(mousePos.x, mousePos.y, mainCam.transform.position.z));
             currentPosition = targetPosition;
+
+            StartCoroutine(SmoothZoom());
         }
     }
 
@@ -80,6 +81,24 @@ public class CameraZoom : MonoBehaviour
             isZoom = false;
 
             currentPosition = originPosition;
+
+            StartCoroutine(SmoothZoom());
+        }
+    }
+
+    public IEnumerator SmoothZoom()
+    {
+        float dampTime = 0;
+
+        while (dampTime <= 1.0f)
+        {
+            mainCam.orthographicSize = Mathf.SmoothDamp(mainCam.orthographicSize, zoom, ref velocity, smoothTime);
+            mainCam.transform.position = Vector3.SmoothDamp(mainCam.transform.position, currentPosition, ref vectorVelocity, smoothTime);
+
+            dampTime += Time.deltaTime;
+
+            // 한 프레임 대기
+            yield return null;
         }
     }
 
@@ -94,8 +113,8 @@ public class CameraZoom : MonoBehaviour
         float minY = backgroundSize.y / -2 + cameraHeight;
         float maxY = backgroundSize.y / 2 - cameraHeight;
 
-        float clampedX = Mathf.Clamp(targetPosition.x, minX, maxX);
-        float clampedY = Mathf.Clamp(targetPosition.y, minY, maxY);
+        float clampedX = Mathf.Clamp(targetPosition.x, originPosition.x + minX, originPosition.x + maxX);
+        float clampedY = Mathf.Clamp(targetPosition.y, originPosition.y + minY, originPosition.y + maxY);
 
         return new Vector3(clampedX, clampedY, targetPosition.z);
     }
