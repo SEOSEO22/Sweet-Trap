@@ -65,12 +65,12 @@ public class UIInventoryItem : MonoBehaviour, IPointerEnterHandler, IPointerExit
     {
     }
 
-    // 아이템을 사용했을 때의 기능 (액션 정의는 UIInventoryPage.cs에 존재)
     public void OnDrop(PointerEventData eventData)
     {
         OnItemDroppedOn?.Invoke(this);
     }
 
+    // 아이템을 사용했을 때의 기능 (액션 정의는 UIInventoryPage.cs에 존재)
     // 아이템 드래그를 끝냈을 때의 기능 (액션 정의는 UIInventoryPage.cs에 존재)
     public void OnEndDrag(PointerEventData eventData)
     {

@@ -68,12 +68,12 @@ public class BottleGameController : MonoBehaviour
         {
             if (bottle.IsBottleAllSameColor() == false)
             {
-                break;
+                return false;
             }
 
-            isGameClear = true;
         }
 
+        isGameClear = true;
         return isGameClear;
     }
 

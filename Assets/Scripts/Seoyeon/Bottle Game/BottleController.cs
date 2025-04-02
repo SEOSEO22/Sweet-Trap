@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class BottleController : MonoBehaviour
 {
-    [HideInInspector] 
-    public SpriteRenderer initBottleMaskSR;
+    [HideInInspector]
+    public Color[] initBottleColors;
     [HideInInspector]
     public int initNumberOfColorsInBottle;
     [HideInInspector]
@@ -49,7 +49,10 @@ public class BottleController : MonoBehaviour
 
     public void InitBottle()
     {
-        bottleMaskSR = initBottleMaskSR;
+        for (int i = 0; i < bottleColors.Length; i++)
+        {
+            bottleColors[i] = initBottleColors[i];
+        }
         numberOfColorsInBottle = initNumberOfColorsInBottle;
         numberOfTopColorLayers = initNumberOfTopColorLayers;
         topColor = initTopColor;
@@ -71,7 +74,12 @@ public class BottleController : MonoBehaviour
         UpdateColorsOnShader();
         UpdateTopColorValues();
 
-        initBottleMaskSR = bottleMaskSR;
+        initBottleColors = new Color[bottleColors.Length];
+
+        for (int i = 0; i < bottleColors.Length; i++)
+        {
+            initBottleColors[i] = bottleColors[i];
+        }
         initNumberOfColorsInBottle = numberOfColorsInBottle;
         initNumberOfTopColorLayers = numberOfTopColorLayers;
         initTopColor = topColor;
@@ -279,15 +287,15 @@ public class BottleController : MonoBehaviour
 
             if (numberOfColorsInBottle == 4)
             {
-                if (bottleColors[3].Equals(bottleColors[2]))
+                if (AreColorsEqual(bottleColors[3], bottleColors[2]))
                 {
                     numberOfTopColorLayers = 2;
 
-                    if (bottleColors[2].Equals(bottleColors[1]))
+                    if (AreColorsEqual(bottleColors[2], bottleColors[1]))
                     {
                         numberOfTopColorLayers = 3;
 
-                        if (bottleColors[1].Equals(bottleColors[0]))
+                        if (AreColorsEqual(bottleColors[1], bottleColors[0]))
                         {
                             numberOfTopColorLayers = 4;
                         }
@@ -296,11 +304,11 @@ public class BottleController : MonoBehaviour
             }
             else if (numberOfColorsInBottle == 3)
             {
-                if (bottleColors[2].Equals(bottleColors[1]))
+                if (AreColorsEqual(bottleColors[2], bottleColors[1]))
                 {
                     numberOfTopColorLayers = 2;
 
-                    if (bottleColors[1].Equals(bottleColors[0]))
+                    if (AreColorsEqual(bottleColors[1], bottleColors[0]))
                     {
                         numberOfTopColorLayers = 3;
                     }
@@ -308,7 +316,7 @@ public class BottleController : MonoBehaviour
             }
             else if (numberOfColorsInBottle == 2)
             {
-                if (bottleColors[1].Equals(bottleColors[0]))
+                if (AreColorsEqual(bottleColors[1], bottleColors[0]))
                 {
                     numberOfTopColorLayers = 2;
                 }
@@ -320,6 +328,14 @@ public class BottleController : MonoBehaviour
         {
             numberOfTopColorLayers = 0;
         }
+    }
+
+    private bool AreColorsEqual(Color a, Color b)
+    {
+        return Mathf.Approximately(a.r, b.r) &&
+               Mathf.Approximately(a.g, b.g) &&
+               Mathf.Approximately(a.b, b.b) &&
+               Mathf.Approximately(a.a, b.a);
     }
 
     public bool FillBottleCheck(Color colorToCheck)
@@ -336,7 +352,7 @@ public class BottleController : MonoBehaviour
             }
             else
             {
-                if (topColor.Equals(colorToCheck))
+                if (AreColorsEqual(topColor, colorToCheck))
                 {
                     return true;
                 }
