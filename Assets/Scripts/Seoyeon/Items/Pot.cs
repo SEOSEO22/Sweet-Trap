@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Pot : MonoBehaviour
+public class Pot : MonoBehaviour, ITarget
 {
     [SerializeField] private GameObject[] removeObjects;
     [SerializeField] private GameObject basementDoor;
@@ -12,47 +12,20 @@ public class Pot : MonoBehaviour
     [SerializeField] private string[] needItemNames;
 
     [SerializeField]
-    private bool[] isItemOnceInInventory;
-    [SerializeField]
     private bool[] isItemUsed;
 
     private void Start()
     {
-        isItemOnceInInventory = new bool[needItemNames.Length];
         isItemUsed = new bool[needItemNames.Length];
 
         for (int i = 0; i < needItemNames.Length; i++)
         {
-            isItemOnceInInventory[i] = false;
             isItemUsed[i] = false;
         }
     }
 
     private void Update()
     {
-        for (int i = 0; i < needItemNames.Length; i++)
-        {
-            if (IsItemExist(needItemNames[i]) == false)
-            {
-                continue;
-            }
-
-            isItemOnceInInventory[i] = true;
-        }
-
-        for (int i = 0; i < needItemNames.Length; i++)
-        {
-            if (isItemOnceInInventory[i] == true)
-            {
-                if (IsItemExist(needItemNames[i]) == true)
-                {
-                    continue;
-                }
-
-                isItemUsed[i] = true;
-            }
-        }
-
         bool isItemAllUsed = false;
 
         for (int i = 0; i < needItemNames.Length; i++)
@@ -112,5 +85,16 @@ public class Pot : MonoBehaviour
         }
 
         return isExist;
+    }
+
+    public void UseItemAction(string itemName)
+    {
+        for (int i = 0; i < needItemNames.Length; i++)
+        {
+            if (itemName == needItemNames[i])
+            {
+                isItemUsed[i] = true;
+            }
+        }
     }
 }
