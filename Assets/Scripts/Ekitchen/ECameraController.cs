@@ -9,7 +9,6 @@ public class ECameraController : MonoBehaviour
 
     private void Update()
     {
-        Debug.Log(positions[currentIndex].position);
         // 카메라를 목표 위치로 부드럽게 이동
         transform.position = Vector3.Lerp(transform.position, positions[currentIndex].position, Time.deltaTime * moveSpeed);
     }

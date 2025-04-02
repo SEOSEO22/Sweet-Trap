@@ -9,9 +9,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6622750e3f37dc145bd3311823270a75, type: 3}
-  m_Name: GreenWater
+  m_Script: {fileID: 11500000, guid: bbda5333b25dadc42bb0975f4952ed68, type: 3}
+  m_Name: GreenCandy
   m_EditorClassIdentifier: 
-  <Icon>k__BackingField: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
-  <DisplayName>k__BackingField: 
+  <Icon>k__BackingField: {fileID: 21300000, guid: 89d884fd0bde3a645a71d208d29c7333, type: 3}
+  <DisplayName>k__BackingField: "\uCD08\uB85D\uCE94\uB514"
   <Discription>k__BackingField: 
+  TargetItem:
+  - "\uC57D\uD1B5"

@@ -9,9 +9,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6622750e3f37dc145bd3311823270a75, type: 3}
-  m_Name: Key
+  m_Script: {fileID: 11500000, guid: bbda5333b25dadc42bb0975f4952ed68, type: 3}
+  m_Name: Earthworm
   m_EditorClassIdentifier: 
-  <Icon>k__BackingField: {fileID: 21300000, guid: 3661b7517f54e8541b64c882127dc4f5, type: 3}
-  <DisplayName>k__BackingField: 
+  <Icon>k__BackingField: {fileID: 21300000, guid: 93194fb9a2279c4488e3b895e2dbbbf4, type: 3}
+  <DisplayName>k__BackingField: "\uC9C0\uB801\uC774"
   <Discription>k__BackingField: 
+  TargetItem:
+  - Snake

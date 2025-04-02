@@ -9,9 +9,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6622750e3f37dc145bd3311823270a75, type: 3}
-  m_Name: Key
+  m_Script: {fileID: 11500000, guid: bbda5333b25dadc42bb0975f4952ed68, type: 3}
+  m_Name: BlueCandy
   m_EditorClassIdentifier: 
-  <Icon>k__BackingField: {fileID: 21300000, guid: 3661b7517f54e8541b64c882127dc4f5, type: 3}
-  <DisplayName>k__BackingField: 
+  <Icon>k__BackingField: {fileID: 21300000, guid: f00ea5b9b47258e4aa6f4e114bb047ad, type: 3}
+  <DisplayName>k__BackingField: "\uD30C\uB791\uCE94\uB514"
   <Discription>k__BackingField: 
+  TargetItem:
+  - "\uC57D\uD1B5"

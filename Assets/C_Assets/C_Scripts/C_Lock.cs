@@ -10,6 +10,7 @@ public class C_Lock : MonoBehaviour
     private string correctCode = "3721"; // 정답 코드
     private string currentInput = "";    // 현재 입력된 숫자
     public GameObject background; // 기존 배경 오브젝트
+    public GameObject gem2; 
 
     private List<TouchTrigger> interactableObjects = new List<TouchTrigger>();
 
@@ -40,10 +41,11 @@ public class C_Lock : MonoBehaviour
             if (currentInput.Length == 4) // 4자리 입력이 완료되었을 때 처리
             {
                 EnableInteractableObjects();
+
                 if (currentInput == correctCode)
                 {
-
                     Unlock(); // 정답이면 자물쇠 해제
+                    EnableInteractableObjects();
                 }
                 else
                 {
@@ -65,17 +67,23 @@ public class C_Lock : MonoBehaviour
 
         if (background != null)
         {
+            EnableInteractableObjects();
             background.SetActive(false);
+            if (background != null)
+            {
+                EnableInteractableObjects();
+                gem2.SetActive(true);
+
+            }
         }
 
         // 오브젝트를 먼저 활성화한 후 `SetLockOpened()` 실행
         EnableInteractableObjects();
 
-        // TouchTrigger가 존재하는지 확인 후 실행
-        TouchTrigger cookieSister = FindObjectOfType<TouchTrigger>();
-        if (cookieSister != null)
+        // 모든 TouchTrigger 오브젝트 찾아서 `SetLockOpened()` 호출
+        foreach (TouchTrigger touchTrigger in FindObjectsOfType<TouchTrigger>())
         {
-            cookieSister.SetLockOpened();
+            touchTrigger.SetLockOpened();
         }
     }
 
@@ -94,24 +102,22 @@ public class C_Lock : MonoBehaviour
         UpdateLockText();
     }
 
-    // Interactable 컴포넌트를 가진 오브젝트들을 비활성화하는 함수
     private void DisableInteractableObjects()
     {
         interactableObjects.Clear();
-        foreach (TouchTrigger TouchTrigger in FindObjectsOfType<TouchTrigger>())
+        foreach (TouchTrigger touchTrigger in FindObjectsOfType<TouchTrigger>())
         {
-            TouchTrigger.gameObject.SetActive(false); // 오브젝트 비활성화
-            interactableObjects.Add(TouchTrigger); // 비활성화한 오브젝트를 리스트에 저장
+            touchTrigger.gameObject.SetActive(false);
+            interactableObjects.Add(touchTrigger);
         }
     }
 
-    // Interactable 컴포넌트를 가진 오브젝트들을 다시 활성화하는 함수
     private void EnableInteractableObjects()
     {
-        foreach (TouchTrigger TouchTrigger in interactableObjects)
+        foreach (TouchTrigger touchTrigger in interactableObjects)
         {
-            TouchTrigger.gameObject.SetActive(true); // 오브젝트 활성화
+            touchTrigger.gameObject.SetActive(true);
         }
-        interactableObjects.Clear(); // 리스트 초기화
+        interactableObjects.Clear();
     }
 }

@@ -19,6 +19,9 @@ TagManager:
   - Paper
   - Exit
   - PIcture
+  - Picture2
+  - Solution
+  - Ladder
   layers:
   - Default
   - TransparentFX
