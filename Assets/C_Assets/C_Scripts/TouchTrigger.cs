@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class TouchTrigger : MonoBehaviour
 {
@@ -128,7 +129,7 @@ public class TouchTrigger : MonoBehaviour
             {
                 if (IsItemExist("해독제"))
                 {
-                    //  SceneManager.LoadScene("EndingScene"); // 엔딩 씬으로 이동
+                    SceneManager.LoadScene("EscapeSuccessScene"); // 엔딩 씬으로 이동
                     Debug.Log("탈출!");
                 }
                 else

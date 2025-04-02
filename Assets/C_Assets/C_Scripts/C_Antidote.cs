@@ -35,7 +35,7 @@ public class C_Antidote : MonoBehaviour, ITarget
         else
         {
             Debug.Log("순서가 틀렸습니다. 실패 씬으로 이동합니다.");
-            SceneManager.LoadScene("FailureScene"); // 실패 씬 로드
+            SceneManager.LoadScene("EscapeFailScene"); // 실패 씬 로드
         }
     }
 
