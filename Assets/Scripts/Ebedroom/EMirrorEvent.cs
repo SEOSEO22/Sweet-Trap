@@ -9,6 +9,8 @@ public class MirrorEvent : MonoBehaviour
     public GameObject chocotalk; 
     public Text text;
 
+    public GameObject let3;
+
     private bool isActivated = false;
 
     public void Start()
@@ -67,7 +69,8 @@ public class MirrorEvent : MonoBehaviour
         if (xButton != null) xButton.SetActive(false);
 
         if (chocotalk != null) chocotalk.SetActive(false); 
-        if (text != null) text.gameObject.SetActive(false); 
+        if (text != null) text.gameObject.SetActive(false);
+        if (let3 != null) let3.SetActive(false);
 
     }
 }
